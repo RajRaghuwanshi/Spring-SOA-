@@ -1,0 +1,17 @@
+/*
+@Trigger Name  :  ContactTrigger.
+@Created on    :  22/01/2021.
+@Description   :  Contact Trigger. 
+*/
+trigger ContactTrigger on Contact (after insert, after update, after delete) {
+    if(Trigger.isAfter){
+        ContactTriggerHandler objContactTriggerHandler = new ContactTriggerHandler();
+        if(Trigger.isInsert){
+            objContactTriggerHandler.afterOperations(Trigger.newMap , Trigger.oldMap, 'Insert'); 
+        }else if(Trigger.isUpdate){
+            objContactTriggerHandler.afterOperations(Trigger.newMap , Trigger.oldMap, 'Update'); 
+        }else if(Trigger.isDelete){
+            objContactTriggerHandler.afterOperations(Trigger.newMap , Trigger.oldMap, 'Delete'); 
+        } 
+    }
+}
